@@ -8,7 +8,7 @@ $(PKG)_CHECKSUM := 6efa8a5c559e92b2e526d48034e858023d5fd3c39115ac1bfd3bb65834dbd
 $(PKG)_SUBDIR   := $(PKG)-opensource-src-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-opensource-src-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := http://download.qt.io/official_releases/qt/5.6/$($(PKG)_VERSION)/submodules/$($(PKG)_FILE)
-$(PKG)_DEPS     := gcc dbus fontconfig freetds freetype harfbuzz jpeg libpng libmysqlclient openssl pcre postgresql sqlite zlib
+$(PKG)_DEPS     := gcc fontconfig freetype harfbuzz jpeg libpng pcre sqlite zlib
 
 define $(PKG)_UPDATE
     $(WGET) -q -O- http://download.qt-project.org/official_releases/qt/5.5/ | \
@@ -42,12 +42,6 @@ define $(PKG)_BUILD
             -accessibility \
             -nomake examples \
             -nomake tests \
-            -plugin-sql-mysql \
-            -mysql_config $(PREFIX)/$(TARGET)/bin/mysql_config \
-            -plugin-sql-sqlite \
-            -plugin-sql-odbc \
-            -plugin-sql-psql \
-            -plugin-sql-tds -D Q_USE_SYBASE \
             -system-zlib \
             -system-libpng \
             -system-libjpeg \
@@ -56,8 +50,8 @@ define $(PKG)_BUILD
             -system-freetype \
             -system-harfbuzz \
             -system-pcre \
-            -openssl-linked \
-            -dbus-linked \
+            -no-dbus \
+            -no-openssl \
             -v
 
     # invoke qmake with removed debug options as a workaround for
