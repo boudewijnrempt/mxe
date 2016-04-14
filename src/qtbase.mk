@@ -45,7 +45,6 @@ define $(PKG)_BUILD
             -system-zlib \
             -system-libpng \
             -system-libjpeg \
-            -system-sqlite \
             -fontconfig \
             -system-freetype \
             -system-harfbuzz \
