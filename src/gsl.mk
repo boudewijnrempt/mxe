@@ -3,8 +3,8 @@
 
 PKG             := gsl
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 1.16
-$(PKG)_CHECKSUM := 73bc2f51b90d2a780e6d266d43e487b3dbd78945dd0b04b14ca5980fe28d2f53
+$(PKG)_VERSION  := 2.1
+$(PKG)_CHECKSUM := 59ad06837397617f698975c494fe7b2b698739a59e2fcf830b776428938a0c66
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.gz
 $(PKG)_URL      := http://ftp.gnu.org/gnu/$(PKG)/$($(PKG)_FILE)
@@ -19,10 +19,7 @@ endef
 
 define $(PKG)_BUILD
     cd '$(1)' && ./configure \
-        --host='$(TARGET)' \
-        --build="`config.guess`" \
-        --prefix='$(PREFIX)/$(TARGET)' \
-        --enable-shared 
+        ${MXE_CONFIGURE_OPTS}
     $(MAKE) -C '$(1)' -j '$(JOBS)'
     $(MAKE) -C '$(1)' -j 1 install
 
@@ -32,4 +29,3 @@ define $(PKG)_BUILD
         -lgsl
 endef
 
-$(PKG)_BUILD_SHARED =
