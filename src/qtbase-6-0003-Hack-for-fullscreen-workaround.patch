@@ -1,7 +1,7 @@
-diff --git a/qtbase/mkspecs/features/create_cmake.prf b/qtbase/mkspecs/features/create_cmake.prf
+diff --git a/mkspecs/features/create_cmake.prf b/mkspecs/features/create_cmake.prf
 index 11fb52a..aec9ea9 100644
---- a/qtbase/mkspecs/features/create_cmake.prf
-+++ b/qtbase/mkspecs/features/create_cmake.prf
+--- a/mkspecs/features/create_cmake.prf
++++ b/mkspecs/features/create_cmake.prf
 @@ -30,7 +30,6 @@ CMAKE_MODULE_NAME = $$cmakeModuleName($${MODULE})
  
  split_incpath {
